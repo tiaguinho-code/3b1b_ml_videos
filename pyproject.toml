@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "3b1b-ml-videos"
+version = "0.1.0"
+description = ""
+authors = ["Tiago Würthner <twuerthner@ethz.ch>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "3.11.9"
+gensim = "^4.3.2"
+scipy = "1.9.3"
+ipykernel = "^6.29.4"
+jupyter = "^1.0.0"
+scikit-learn = "^1.5.0"
+matplotlib = "^3.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
