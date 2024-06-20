@@ -16,27 +16,40 @@ vectors = np.array([model[word] for word in sample_words])
 pca = PCA(n_components=3)
 pca.fit(vectors)
 
-from mpl_toolkits.mplot3d import Axes3D
 
-# Get the word vector for the word "tower" and transform it using PCA
-vector = model["tower"]
+# List of words to transform and plot
+words = ["tower", "bike", "car", "plane"]
 
-reduced_vector = pca.transform(vector.reshape(1, -1))[0]
-
-# Plot the reduced vector in 3D space
+# Prepare figure
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-# Plot the vector from origin to the reduced point using quiver
-ax.quiver(0, 0, 0, reduced_vector[0], reduced_vector[1], reduced_vector[2], 
-          color='r', arrow_length_ratio=0.1)
+# Variable to hold maximum absolute value for setting axes limits later
+max_val = 0
 
-ax.set_xlabel('Component 1')
-ax.set_ylabel('Component 2')
-ax.set_zlabel('Component 3')
-ax.set_title('3D plot of the "tower" vector after PCA')
-max_val = np.max(np.abs(reduced_vector)) * 1.1  # Adding a little margin
+# Transform and plot each word
+for word in words:
+    vector = model[word]
+    reduced_vector = pca.transform(vector.reshape(1, -1))[0]
+    
+    # Plot the vector from origin to the reduced point using quiver
+    ax.quiver(0, 0, 0, reduced_vector[0], reduced_vector[1], reduced_vector[2], 
+              label=word, arrow_length_ratio=0.1)
+    ax.text(reduced_vector[0], reduced_vector[1], reduced_vector[2], f'{word}', color='red')
+    
+    # Update max_val for setting axis limits
+    max_val = max(max_val, np.max(np.abs(reduced_vector)))
+
+# Set the limits of the axes
+max_val *= 1.1  # Adding a little margin
 ax.set_xlim([-max_val, max_val])
 ax.set_ylim([-max_val, max_val])
 ax.set_zlim([-max_val, max_val])
+
+# Set labels and title
+ax.set_xlabel('Component 1')
+ax.set_ylabel('Component 2')
+ax.set_zlabel('Component 3')
+ax.set_title('3D plot of word vectors after PCA')
+
 plt.show()
