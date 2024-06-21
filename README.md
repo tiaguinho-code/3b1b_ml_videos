@@ -1,0 +1,3 @@
+# Word Embedding Visualization
+### 3b1b But what is a GPT? [13:37](https://www.youtube.com/watch?v=wjZofJX0v4M&t=817s)
+This little script is inspired by the demo that 3b1b did in his _"But what is a GPT? Visual intro to transformers | Chapter 5, Deep Learning"_ video. There he does a dimensionality reduction of the glove-wiki-gigaword-50 wordlist that is embedded in high dimensional space. Here you can play around with the difference vector like with the pairs [man, woman], [father, mother] or etc to see if they have similar differences.
