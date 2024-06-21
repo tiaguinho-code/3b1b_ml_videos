@@ -5,11 +5,17 @@ from sklearn.preprocessing import normalize
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
+# Query the user for a single line of input
+user_input = input("Enter four words separated by spaces: ")
 
-################## Input here ##################
-# List of exactly 4 words to transform and plot
-words = ["man", "woman", "father", "mother"]
-################################################
+# Split the user input into a list of strings
+words = user_input.split()
+
+# Check if exactly four strings were provided
+if len(words) == 4:
+    print("You have entered:", words)
+else:
+    print("Error: Please enter exactly four strings.")
 
 # Load the GloVe model
 model = gensim.downloader.load("glove-wiki-gigaword-50")
